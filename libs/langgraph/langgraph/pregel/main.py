@@ -136,7 +136,7 @@ from langgraph.pregel._validate import validate_graph, validate_keys
 from langgraph.pregel._write import ChannelWrite, ChannelWriteEntry
 from langgraph.pregel.debug import get_bolded_text, get_colored_text, tasks_w_writes
 from langgraph.pregel.protocol import PregelProtocol, StreamChunk, StreamProtocol
-from langgraph.runtime import DEFAULT_RUNTIME, Runtime
+from langgraph.runtime import DEFAULT_RUNTIME, ExecutionInfo, Runtime
 from langgraph.types import (
     All,
     CachePolicy,
@@ -2456,7 +2456,7 @@ class Pregel(
         debug: bool | None = None,
         version: Literal["v2"],
         **kwargs: Unpack[DeprecatedKwargs],
-    ) -> Iterator[StreamPart[OutputT, StateT]]: ...
+    ) -> Iterator[StreamPart[StateT, OutputT]]: ...
 
     @overload
     def stream(
@@ -2648,6 +2648,7 @@ class Pregel(
                 store=store,
                 stream_writer=stream_writer,
                 previous=None,
+                execution_info=ExecutionInfo(),
             )
             parent_runtime = config[CONF].get(CONFIG_KEY_RUNTIME, DEFAULT_RUNTIME)
             runtime = parent_runtime.merge(runtime)
@@ -2787,7 +2788,7 @@ class Pregel(
         debug: bool | None = None,
         version: Literal["v2"],
         **kwargs: Unpack[DeprecatedKwargs],
-    ) -> AsyncIterator[StreamPart[OutputT, StateT]]: ...
+    ) -> AsyncIterator[StreamPart[StateT, OutputT]]: ...
 
     @overload
     def astream(
@@ -3014,6 +3015,7 @@ class Pregel(
                 store=store,
                 stream_writer=stream_writer,
                 previous=None,
+                execution_info=ExecutionInfo(),
             )
             parent_runtime = config[CONF].get(CONFIG_KEY_RUNTIME, DEFAULT_RUNTIME)
             runtime = parent_runtime.merge(runtime)
@@ -3194,7 +3196,7 @@ class Pregel(
         durability: Durability | None = None,
         version: Literal["v2"],
         **kwargs: Any,
-    ) -> list[StreamPart[OutputT, StateT]]: ...
+    ) -> list[StreamPart[StateT, OutputT]]: ...
 
     @overload
     def invoke(
@@ -3364,7 +3366,7 @@ class Pregel(
         durability: Durability | None = None,
         version: Literal["v2"],
         **kwargs: Any,
-    ) -> list[StreamPart[OutputT, StateT]]: ...
+    ) -> list[StreamPart[StateT, OutputT]]: ...
 
     @overload
     async def ainvoke(
