@@ -47,6 +47,15 @@ jobs:
         run: uv build
         working-directory: ${{ inputs.working-directory }}
 
+      - name: Verify distribution artifacts
+        shell: bash
+        working-directory: ${{ inputs.working-directory }}
+        run: |
+          if ! find dist -maxdepth 1 -type f | grep -q .; then
+            echo "Error: test release build did not produce dist artifacts."
+            exit 1
+          fi
+
       - name: Upload build
         uses: actions/upload-artifact@v7
         with:
