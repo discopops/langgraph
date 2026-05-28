@@ -1,11 +1,14 @@
 # LangGraph
 
 LangGraph documentation has moved to docs.langchain.com.
+LangGraph v1 is available, with the latest changes and migration guidance in the release notes.
 
 ## Overview
 
 - [LangGraph Overview](https://docs.langchain.com/oss/python/langgraph/overview): Introduction to LangGraph, a library for building stateful, multi-actor applications with LLMs.
 - [Why LangGraph?](https://docs.langchain.com/oss/python/langgraph/overview): Motivation for LangGraph and its key features.
+- [What's new in LangGraph v1](https://docs.langchain.com/oss/python/releases/langgraph-v1): Release notes, upgrade notes, and migration guidance.
+- [Install LangGraph](https://docs.langchain.com/oss/python/langgraph/install): Set up LangGraph locally and install the Python package.
 
 ## Core Concepts
 
@@ -14,6 +17,8 @@ LangGraph documentation has moved to docs.langchain.com.
 - [Persistence](https://docs.langchain.com/oss/python/langgraph/persistence): Add memory and checkpointing to your graphs.
 - [Add Memory](https://docs.langchain.com/oss/python/langgraph/add-memory): Implement short-term and long-term memory.
 - [Workflows & Agents](https://docs.langchain.com/oss/python/langgraph/workflows-agents): Build agents and workflows with LangGraph.
+- [Use the graph API](https://docs.langchain.com/oss/python/langgraph/use-graph-api): Build and extend graphs with the current graph API patterns.
+- [Subgraphs](https://docs.langchain.com/oss/python/langgraph/use-subgraphs): Compose graphs from reusable subgraphs.
 
 ## How-To Guides
 
